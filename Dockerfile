@@ -9,6 +9,7 @@ WORKDIR /home/ubuntu
 RUN curl -L  $(curl -s  https://api.github.com/repos/cloudreve/Cloudreve/releases/latest | jq '.assets' | jq '.[].browser_download_url' | grep linux_amd64.tar.gz | cut -d '"' -f 2) -o dist.tar.gz && \
     tar -zxvf dist.tar.gz && \
     rm dist.tar.gz
+RUN chmod a+x cloudreve
 COPY conf.ini /home/ubuntu/conf.ini
 
 EXPOSE 5212
